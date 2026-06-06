@@ -2,7 +2,7 @@ use std::sync::atomic::AtomicBool;
 
 use shakmaty::{Chess, Move};
 
-use crate::{GoParams, UciOptions};
+use crate::{GoParams, Info, UciOptions};
 
 pub trait Engine: Send {
     type Options: UciOptions;
@@ -14,5 +14,11 @@ pub trait Engine: Send {
 
     fn new_game(&mut self) {}
 
-    fn go(&mut self, position: &Chess, params: &GoParams, stop: &AtomicBool) -> Option<Move>;
+    fn go(
+        &mut self,
+        position: &Chess,
+        params: &GoParams,
+        stop: &AtomicBool,
+        report: &mut dyn FnMut(Info),
+    ) -> Option<Move>;
 }

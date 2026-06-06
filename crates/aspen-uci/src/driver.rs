@@ -6,10 +6,11 @@ use std::thread::{Scope, spawn};
 use shakmaty::{CastlingMode, Chess, Move, Position};
 use shakmaty::uci::UciMove;
 
-use crate::{Engine, PositionSpec, Response, UciCommand, UciOptions};
+use crate::{Engine, Info, PositionSpec, Response, UciCommand, UciOptions};
 
 enum Event {
     Command(UciCommand),
+    Info(Info),
     SearchFinished,
 }
 
@@ -77,6 +78,7 @@ impl<EngineType: Engine> Driver<EngineType> {
                         break;
                     }
                 }
+                Event::Info(info) => self.emit(Response::Info(info))?,
                 Event::SearchFinished => self.finish_search()?,
             }
         }
@@ -161,7 +163,10 @@ impl<EngineType: Engine> Driver<EngineType> {
         let (result_sender, result_receiver) = oneshot::channel();
         self.pending = Some(result_receiver);
         scope.spawn(move || {
-            let best = engine.go(&board, &params, stop);
+            let mut report = |info| {
+                let _ = sender.send(Event::Info(info));
+            };
+            let best = engine.go(&board, &params, stop, &mut report);
             let _ = result_sender.send((engine, best));
             let _ = sender.send(Event::SearchFinished);
         });

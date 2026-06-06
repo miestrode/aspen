@@ -1,11 +1,10 @@
 [package]
-name = "aspen-engine"
+name = "aspen-search"
 version.workspace = true
 edition.workspace = true
 
 [dependencies]
-aspen-search.workspace = true
-aspen-uci.workspace = true
+aspen-eval.workspace = true
 shakmaty.workspace = true
 
 [lints]

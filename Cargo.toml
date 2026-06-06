@@ -8,6 +8,8 @@ edition = "2024"
 
 [workspace.dependencies]
 aspen-engine.path = "crates/aspen-engine"
+aspen-eval.path = "crates/aspen-eval"
+aspen-search.path = "crates/aspen-search"
 aspen-uci.path = "crates/aspen-uci"
 aspen-uci-derive.path = "crates/aspen-uci-derive"
 

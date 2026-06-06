@@ -12,7 +12,23 @@ checksum = "7c02d123df017efcdfbd739ef81735b36c5ba83ec3c59c80a9d7ecc718f92e50"
 name = "aspen-engine"
 version = "0.1.0"
 dependencies = [
+ "aspen-search",
  "aspen-uci",
+ "shakmaty",
+]
+
+[[package]]
+name = "aspen-eval"
+version = "0.1.0"
+dependencies = [
+ "shakmaty",
+]
+
+[[package]]
+name = "aspen-search"
+version = "0.1.0"
+dependencies = [
+ "aspen-eval",
  "shakmaty",
 ]
 
