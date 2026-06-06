@@ -1,0 +1,62 @@
+data_dir = ".crucible"
+
+[server]
+web_port = 8877
+web_host = "127.0.0.1"
+
+[testing]
+concurrency = 4
+max_games = 10000
+hash_mb = 16
+engine_threads = 1
+poll_interval_seconds = 60
+
+[testing.time_control]
+base_ms = 10000
+increment_ms = 100
+
+[testing.sprt]
+elo0 = 0.0
+elo1 = 5.0
+alpha = 0.05
+beta = 0.05
+min_games = 16
+
+[training]
+output_dir = ".crucible/training"
+selfplay_games = 100
+collect_from_tests = true
+regression_min_depth = 10
+selfplay_depth = 10
+idle_selfplay = false
+idle_batch_games = 1
+
+# [[gate.opponents]]
+# name = "Stockfish"
+# binary_path = "/opt/engines/stockfish"
+
+# [gate.opponents.options]
+
+# [[gate.opponents]]
+# name = "Ethereal"
+# binary_path = "/opt/engines/ethereal"
+
+# [gate.opponents.options]
+
+# [[gate.profiles]]
+# name = "release"
+# opponents = [
+#     "Stockfish",
+#     "Ethereal",
+# ]
+# games_per_opponent = 100
+# min_score_delta = 0.0
+
+[[engines]]
+name = "aspen"
+repo = "https://github.com/miestrode/aspen"
+branches = ["main"]
+experimental_branches = ["exp/*"]
+build_cmd = "cargo build --release"
+binary_path = "target/release/aspen"
+start_from = "v0.1"
