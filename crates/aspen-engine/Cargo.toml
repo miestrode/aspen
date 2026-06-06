@@ -1,0 +1,11 @@
+[package]
+name = "aspen-engine"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+aspen-uci.workspace = true
+shakmaty.workspace = true
+
+[lints]
+workspace = true

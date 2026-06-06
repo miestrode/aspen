@@ -1,0 +1,13 @@
+[package]
+name = "aspen-uci"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+shakmaty.workspace = true
+thiserror.workspace = true
+oneshot.workspace = true
+aspen-uci-derive.workspace = true
+
+[lints]
+workspace = true
