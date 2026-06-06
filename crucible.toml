@@ -58,5 +58,5 @@ repo = "https://github.com/miestrode/aspen"
 branches = ["main"]
 experimental_branches = ["exp/*"]
 build_cmd = "cargo build --release"
-binary_path = "target/release/aspen"
+binary_path = "target/release/aspen-engine"
 start_from = "v0.1"
